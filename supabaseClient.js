@@ -1,0 +1,1 @@
+// Supabase connection will be added when the database is configured.

@@ -1,0 +1,7 @@
+const usersKey="eb_marketiza_users";const sessionKey="eb_marketiza_session";
+function users(){try{return JSON.parse(localStorage.getItem(usersKey)||"[]")}catch{return[]}}
+function setMessage(text){const m=document.getElementById("message");if(m)m.textContent=text}
+const register=document.getElementById("registerForm");
+if(register)register.addEventListener("submit",e=>{e.preventDefault();const fullName=document.getElementById("fullName").value.trim(),email=document.getElementById("email").value.trim().toLowerCase(),password=document.getElementById("password").value,role=document.getElementById("role").value;let u=users();if(u.some(x=>x.email===email)){setMessage("This email is already registered.");return}u.push({fullName,email,password,role});localStorage.setItem(usersKey,JSON.stringify(u));localStorage.setItem(sessionKey,JSON.stringify({fullName,email,role}));setMessage("Account created successfully.");setTimeout(()=>location.href=role==="seller"?"seller-dashboard.html":"index.html",500)});
+const login=document.getElementById("loginForm");
+if(login)login.addEventListener("submit",e=>{e.preventDefault();const email=document.getElementById("email").value.trim().toLowerCase(),password=document.getElementById("password").value,u=users().find(x=>x.email===email&&x.password===password);if(!u){setMessage("Email or password is incorrect.");return}localStorage.setItem(sessionKey,JSON.stringify({fullName:u.fullName,email:u.email,role:u.role}));location.href=u.role==="seller"?"seller-dashboard.html":"index.html"});

@@ -1,0 +1,3 @@
+const session=JSON.parse(localStorage.getItem("eb_marketiza_session")||"null");if(!session||session.role!=="seller")location.href="login.html";else{const w=document.getElementById("welcome");if(w)w.textContent=`Welcome, ${session.fullName}. Manage your shop from here.`}
+document.getElementById("logout")?.addEventListener("click",()=>{localStorage.removeItem("eb_marketiza_session");location.href="index.html"});
+document.getElementById("addProduct")?.addEventListener("click",()=>alert("Product database is the next step. The seller dashboard is ready."));

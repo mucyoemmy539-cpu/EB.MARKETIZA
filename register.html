@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Register — E&B MARKETIZA</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="form-page">
+  <a class="back" href="index.html">← E&B MARKETIZA</a>
+  <form id="registerForm" class="form-card">
+    <h1>Create account</h1><p>Choose how you want to use E&B MARKETIZA.</p>
+    <label>Full name<input id="fullName" required></label>
+    <label>Email<input id="email" type="email" required></label>
+    <label>Password<input id="password" type="password" minlength="6" required></label>
+    <label>Account type
+      <select id="role"><option value="buyer">Buyer</option><option value="seller">Seller</option></select>
+    </label>
+    <button class="btn" type="submit">Create account</button>
+    <div id="message" class="message"></div>
+    <p>Already registered? <a href="login.html">Log in</a></p>
+  </form>
+</div>
+<script src="auth.js"></script>
+</body>
+</html>
