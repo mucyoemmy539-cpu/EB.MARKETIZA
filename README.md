@@ -1,25 +1,24 @@
-# E&B MARKETIZA — Fresh Start
+# E&B MARKETIZA — STEP 4B (REAL SUPABASE DATABASE)
 
-This version intentionally keeps all website files in the repository root to avoid path/folder problems on GitHub Pages.
+This version connects authentication, products, and product images to Supabase.
 
-Files:
-- index.html
-- login.html
-- register.html
-- seller-dashboard.html
-- style.css
-- app.js
-- auth.js
-- dashboard.js
-- config.js
-- supabaseClient.js
-- supabase-schema.sql
-- marketplace-banner.png
+## Setup
+1. Create a Supabase project.
+2. In Supabase SQL Editor, run `supabase-schema.sql`.
+3. Copy your Project URL and public anon key.
+4. Open `config.js` and replace:
+   - YOUR_SUPABASE_URL
+   - YOUR_SUPABASE_ANON_KEY
+5. Upload all files to your GitHub Pages repository root.
+6. Keep GitHub Pages on main / (root).
 
-Current demo features:
-- Marketplace homepage
-- Buyer/seller registration
-- Login
-- Seller dashboard
+## Important
+Only use the public anon key in browser code. Never put a Supabase service_role/secret key in `config.js`.
 
-The browser demo uses localStorage. It is not a secure production authentication system. Real accounts, database, products, orders and payments should be connected in later steps.
+## Authentication
+Register/login uses Supabase Auth. If email confirmation is enabled, the user must confirm their email before logging in.
+
+## Products
+Sellers can add, edit and delete products. Products are stored in the `products` table. Product images are stored in the `product-images` Supabase Storage bucket.
+
+Real checkout, orders, commissions and payment processing should be added as a separate step after the database is working.

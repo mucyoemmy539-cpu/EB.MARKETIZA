@@ -1,7 +1,73 @@
-const usersKey="eb_marketiza_users";const sessionKey="eb_marketiza_session";
-function users(){try{return JSON.parse(localStorage.getItem(usersKey)||"[]")}catch{return[]}}
-function setMessage(text){const m=document.getElementById("message");if(m)m.textContent=text}
-const register=document.getElementById("registerForm");
-if(register)register.addEventListener("submit",e=>{e.preventDefault();const fullName=document.getElementById("fullName").value.trim(),email=document.getElementById("email").value.trim().toLowerCase(),password=document.getElementById("password").value,role=document.getElementById("role").value;let u=users();if(u.some(x=>x.email===email)){setMessage("This email is already registered.");return}u.push({fullName,email,password,role});localStorage.setItem(usersKey,JSON.stringify(u));localStorage.setItem(sessionKey,JSON.stringify({fullName,email,role}));setMessage("Account created successfully.");setTimeout(()=>location.href=role==="seller"?"seller-dashboard.html":"index.html",500)});
-const login=document.getElementById("loginForm");
-if(login)login.addEventListener("submit",e=>{e.preventDefault();const email=document.getElementById("email").value.trim().toLowerCase(),password=document.getElementById("password").value,u=users().find(x=>x.email===email&&x.password===password);if(!u){setMessage("Email or password is incorrect.");return}localStorage.setItem(sessionKey,JSON.stringify({fullName:u.fullName,email:u.email,role:u.role}));location.href=u.role==="seller"?"seller-dashboard.html":"index.html"});
+import { supabase, supabaseReady } from "./supabaseClient.js";
+
+function msg(text, ok=false) {
+  const el = document.getElementById("authMessage");
+  if (el) {
+    el.textContent = text;
+    el.className = ok ? "message success" : "message error";
+  } else {
+    alert(text);
+  }
+}
+
+function requireSupabase() {
+  if (!supabaseReady) {
+    msg("Supabase is not configured yet. Open config.js and add your Supabase URL and anon key.");
+    return false;
+  }
+  return true;
+}
+
+const registerForm = document.getElementById("registerForm");
+if (registerForm) {
+  registerForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!requireSupabase()) return;
+    const fullName = document.getElementById("fullName")?.value.trim() || "";
+    const email = document.getElementById("email")?.value.trim() || "";
+    const password = document.getElementById("password")?.value || "";
+    const role = document.getElementById("role")?.value || "buyer";
+
+    if (!fullName || !email || password.length < 6) {
+      msg("Fill in all fields. Password must be at least 6 characters.");
+      return;
+    }
+
+    const { data, error } = await supabase.auth.signUp({
+      email, password,
+      options: { data: { full_name: fullName, role } }
+    });
+
+    if (error) {
+      msg(error.message);
+      return;
+    }
+
+    if (data.session) {
+      window.location.href = role === "seller" ? "seller-dashboard.html" : "index.html";
+    } else {
+      msg("Account created. Check your email to confirm the account, then log in.", true);
+    }
+  });
+}
+
+const loginForm = document.getElementById("loginForm");
+if (loginForm) {
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!requireSupabase()) return;
+    const email = document.getElementById("email")?.value.trim() || "";
+    const password = document.getElementById("password")?.value || "";
+
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) {
+      msg(error.message);
+      return;
+    }
+
+    const { data: profile } = await supabase
+      .from("profiles").select("role").eq("id", data.user.id).maybeSingle();
+
+    window.location.href = profile?.role === "seller" ? "seller-dashboard.html" : "index.html";
+  });
+}
