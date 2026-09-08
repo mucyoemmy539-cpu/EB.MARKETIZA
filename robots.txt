@@ -1,0 +1,6 @@
+```text
+User-agent: *
+Allow: /
+
+Sitemap: https://mucyoemmy539-cpu.github.io/EB.MARKETIZA/sitemap.xml
+```
