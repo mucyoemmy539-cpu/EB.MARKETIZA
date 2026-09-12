@@ -1,95 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <meta name="description" content="KIVORA - Shop fashion, electronics, beauty, gaming, home products and more.">
- <meta name="google-site-verification" content="qu4dhTgTLOxs8s0scye02GI_Qc1x_OLQEUIVlpxHnRQ" />
- <title>KIVORA | Shop Everything You Love</title>
-  <link rel="stylesheet" href="style.css">
+
+  <title>KIVORA | Shop Everything You Love</title>
+
+  <meta name="description" content="KIVORA - Shop fashion, electronics, beauty, gaming, home products, shoes, accessories and more online.">
+  <meta name="keywords" content="KIVORA, online shopping, fashion, electronics, beauty, gaming, shoes, accessories, home products">
+  <meta name="author" content="KIVORA">
+  <meta name="robots" content="index, follow">
+
+  <!-- Google Search Console Verification -->
+  <meta name="google-site-verification" content="qu4dhTgTLOxs8s0scye02GI_Qc1x_OLQEUIVlpxHnRQ">
+
+  <link rel="canonical" href="https://mucyoemmy539-cpu.github.io/kivora/">
+
+  <meta property="og:title" content="KIVORA | Shop Everything You Love">
+  <meta property="og:description" content="Shop fashion, electronics, beauty, gaming, home products, shoes, accessories and more on KIVORA.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mucyoemmy539-cpu.github.io/kivora/">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f8fa;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #111827;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 6%;
+      box-shadow: 0 2px 10px rgba(0,0,0,.15);
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #00d084;
+    }
+
+    .nav {
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .nav a:hover {
+      color: #00d084;
+    }
+
+    .hero {
+      min-height: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 70px 20px;
+      background: linear-gradient(135deg, #111827, #064e3b);
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 7vw, 72px);
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      max-width: 700px;
+      font-size: 19px;
+      margin-bottom: 30px;
+      color: #e5e7eb;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #00d084;
+      color: #07130d;
+      padding: 14px 30px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 800;
+      transition: .2s;
+    }
+
+    .btn:hover {
+      background: #00b874;
+      transform: translateY(-2px);
+    }
+
+    section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 70px 20px;
+    }
+
+    section h2 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 40px;
+    }
+
+    .categories,
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .category,
+    .product {
+      background: white;
+      border-radius: 14px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,.07);
+      transition: .2s;
+    }
+
+    .category:hover,
+    .product:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,.12);
+    }
+
+    .category h3,
+    .product h3 {
+      color: #111827;
+      margin-bottom: 10px;
+      font-size: 21px;
+    }
+
+    .category p,
+    .product p {
+      color: #666;
+    }
+
+    #contact {
+      text-align: center;
+    }
+
+    footer {
+      background: #111827;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    @media (max-width: 700px) {
+      .header {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .nav {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero {
+        min-height: 450px;
+      }
+
+      section {
+        padding: 50px 15px;
+      }
+    }
+  </style>
 </head>
+
 <body>
+
   <header class="header">
     <div class="logo">KIVORA</div>
-    <nav>
+
+    <nav class="nav">
       <a href="#home">Home</a>
       <a href="#categories">Categories</a>
       <a href="#products">Products</a>
-      <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button class="cart-button" onclick="openCart()">🛒 Cart <span id="cartCount">0</span></button>
   </header>
 
-  <section id="home" class="hero">
-    <div class="hero-content">
-      <p class="small-title">WELCOME TO KIVORA</p>
-      <h1>Everything You Love.<br><span>One Place.</span></h1>
-      <p>Discover fashion, electronics, beauty, gaming, home products and much more.</p>
-      <a href="#products" class="shop-button">Shop Now →</a>
-    </div>
-  </section>
+  <main>
 
-  <section id="categories" class="section">
-    <div class="section-title"><p>EXPLORE</p><h2>Shop by Category</h2></div>
-    <div class="categories">
-      <button onclick="filterProducts('All')"><span>🛍️</span><b>All</b></button>
-      <button onclick="filterProducts('Fashion')"><span>👕</span><b>Fashion</b></button>
-      <button onclick="filterProducts('Shoes')"><span>👟</span><b>Shoes</b></button>
-      <button onclick="filterProducts('Electronics')"><span>📱</span><b>Electronics</b></button>
-      <button onclick="filterProducts('Beauty')"><span>💄</span><b>Beauty</b></button>
-      <button onclick="filterProducts('Home')"><span>🏠</span><b>Home</b></button>
-      <button onclick="filterProducts('Gaming')"><span>🎮</span><b>Gaming</b></button>
-      <button onclick="filterProducts('Accessories')"><span>⌚</span><b>Accessories</b></button>
-      <button onclick="filterProducts('Kids')"><span>🧸</span><b>Kids</b></button>
-      <button onclick="filterProducts('Sports')"><span>🏀</span><b>Sports</b></button>
-    </div>
-  </section>
+    <section id="home" class="hero">
+      <h1>Shop Everything You Love</h1>
 
-  <section id="products" class="section products-section">
-    <div class="products-top">
-      <div class="section-title"><p>KIVORA STORE</p><h2>Featured Products</h2></div>
-      <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchProducts()"> 🔎
+      <p>
+        Discover fashion, electronics, beauty, gaming, shoes,
+        accessories, home products and more at KIVORA.
+      </p>
+
+      <a href="#products" class="btn">Shop Now</a>
+    </section>
+
+    <section id="categories">
+      <h2>Shop by Category</h2>
+
+      <div class="categories">
+
+        <div class="category">
+          <h3>👕 Fashion</h3>
+          <p>Discover the latest fashion and styles.</p>
+        </div>
+
+        <div class="category">
+          <h3>👟 Shoes</h3>
+          <p>Find stylish shoes for everyone.</p>
+        </div>
+
+        <div class="category">
+          <h3>📱 Electronics</h3>
+          <p>Explore modern electronics and gadgets.</p>
+        </div>
+
+        <div class="category">
+          <h3>💄 Beauty</h3>
+          <p>Beauty and personal care products.</p>
+        </div>
+
+        <div class="category">
+          <h3>🎮 Gaming</h3>
+          <p>Gaming products and accessories.</p>
+        </div>
+
+        <div class="category">
+          <h3>🏠 Home</h3>
+          <p>Products for your home and lifestyle.</p>
+        </div>
+
+        <div class="category">
+          <h3>👜 Accessories</h3>
+          <p>Complete your style with accessories.</p>
+        </div>
+
+        <div class="category">
+          <h3>🧸 Kids</h3>
+          <p>Products for children and families.</p>
+        </div>
+
+        <div class="category">
+          <h3>⚽ Sports</h3>
+          <p>Sports products and equipment.</p>
+        </div>
+
       </div>
-    </div>
-    <div id="productsGrid" class="products-grid"></div>
-  </section>
+    </section>
 
-  <section id="about" class="about">
-    <div>
-      <p class="small-title">ABOUT KIVORA</p>
-      <h2>Shopping made simple.</h2>
-      <p>KIVORA is a modern online marketplace designed to bring different products together in one convenient place.</p>
-    </div>
-  </section>
+    <section id="products">
+      <h2>Featured Products</h2>
 
-  <section id="contact" class="section contact">
-    <div class="section-title"><p>GET IN TOUCH</p><h2>Contact KIVORA</h2></div>
-    <form onsubmit="sendMessage(event)">
-      <input type="text" placeholder="Your name" required>
-      <input type="email" placeholder="Your email" required>
-      <textarea placeholder="Your message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </section>
+      <div class="products">
+
+        <div class="product">
+          <h3>Fashion Collection</h3>
+          <p>Shop the latest styles and trends.</p>
+        </div>
+
+        <div class="product">
+          <h3>Electronics</h3>
+          <p>Discover useful modern technology.</p>
+        </div>
+
+        <div class="product">
+          <h3>Gaming Accessories</h3>
+          <p>Upgrade your gaming experience.</p>
+        </div>
+
+        <div class="product">
+          <h3>Home Products</h3>
+          <p>Make your home better and more comfortable.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact KIVORA</h2>
+
+      <p>
+        Have a question? Get in touch with KIVORA.
+      </p>
+    </section>
+
+  </main>
 
   <footer>
-    <div class="logo">KIVORA</div>
-    <p>© 2026 KIVORA. All rights reserved.</p>
-    <div class="socials"><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">YouTube</a></div>
+    <p>&copy; 2026 KIVORA. All rights reserved.</p>
   </footer>
 
-  <div id="cartModal" class="modal">
-    <div class="cart-box">
-      <button class="close" onclick="closeCart()">×</button>
-      <h2>Your Cart 🛒</h2>
-      <div id="cartItems"></div>
-      <div class="cart-total"><strong>Total:</strong><strong id="cartTotal">0 kr</strong></div>
-      <button class="checkout-button" onclick="checkout()">Checkout</button>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
